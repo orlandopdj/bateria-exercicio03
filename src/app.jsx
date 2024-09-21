@@ -16,8 +16,8 @@ const steps = [
 ]
 
 const Toggle = ({ handleClickCloseButton, sholdBeOpen }) => (
-    <div className="container-close">
-        <button onClick={handleClickCloseButton} className="close">{sholdBeOpen ? 'Fechar' : 'Abrir'}</button>
+    <div className="container-toggle">
+        <button onClick={handleClickCloseButton} className="toggle">{sholdBeOpen ? 'Fechar' : 'Abrir'}</button>
     </div>
 )
 
