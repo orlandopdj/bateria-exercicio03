@@ -20,9 +20,10 @@
   .numbers {
     display: flex;
     justify-content: space-between;
+    padding: 0;
   }
   
-  .numbers > div {
+  .numbers > li {
     height: 40px;
     aspect-ratio: 1;
     background-color: #454545;

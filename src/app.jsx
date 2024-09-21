@@ -18,34 +18,37 @@ const steps = [
 const App = () => {
 
     const [actived, setActived] = useState('')
+    const [step, setStep] = useState(1)
     const [sholdBeOpen, setSholdBeOpen] = useState(true)
 
     console.log(sholdBeOpen, '<- estado')
-    const handleClickCloseButton = (e) => setSholdBeOpen((s) => !s)
-    const handleClickBackButton = (e) => console.log(e.target.textContent)
-    const handleClickNextButton = (e) => console.log(e.target.textContent)
+    const handleClickCloseButton = () => setSholdBeOpen((s) => !s)
+    const handleClickBackButton = () => setStep((s) => s - 1)
+    const handleClickNextButton = () => setStep((s) => s + 1)
     return (
         <>
             <div className="container-close">
                 <button onClick={handleClickCloseButton} className="close">{sholdBeOpen ? 'Fechar' : 'Abrir'}</button>
             </div>
 
-            {sholdBeOpen &&
+            {sholdBeOpen && (
                 <div className="steps">
-                    <div className="numbers">
-                        <div className={actived}>1</div>
-                        <div className={actived}>2</div>
-                        <div className={actived}>3</div>
-                    </div>
+                    <ul className="numbers">
+                        {steps.map((item, i) => (
+                            <li className={i + 1 === step ? 'active' : ''} key={item.id}>{i + 1}</li>
+                        ))}
+                    </ul>
 
-                    <p className="message">Passo 1: Entender o problema do cliente</p>
+                    <p className="message">
+                        Passo: {step}: {steps[step - 1].description}
+                    </p>
 
                     <div className="buttons">
                         <button onClick={handleClickBackButton}>Anterior</button>
                         <button onClick={handleClickNextButton}>Próximo</button>
                     </div>
 
-                </div>}
+                </div>)}
         </>
     )
 }
