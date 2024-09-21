@@ -23,32 +23,34 @@ const App = () => {
 
     console.log(sholdBeOpen, '<- estado')
     const handleClickCloseButton = () => setSholdBeOpen((s) => !s)
-    const handleClickBackButton = () => setStep((s) => s - 1)
-    const handleClickNextButton = () => setStep((s) => s + 1)
+    const handleClickBackButton = () => setStep((s) => s - 1 === 0 ? s : s - 1)
+    const handleClickNextButton = () => setStep((s) => steps.length === s ? s : s + 1)
     return (
         <>
             <div className="container-close">
                 <button onClick={handleClickCloseButton} className="close">{sholdBeOpen ? 'Fechar' : 'Abrir'}</button>
             </div>
 
-            {sholdBeOpen && (
-                <div className="steps">
-                    <ul className="numbers">
-                        {steps.map((item, i) => (
-                            <li className={i + 1 === step ? 'active' : ''} key={item.id}>{i + 1}</li>
-                        ))}
-                    </ul>
+            {sholdBeOpen &&
+                (
+                    <div className="steps">
+                        <ul className="numbers">
+                            {steps.map((item, i) => (
+                                <li className={i + 1 === step ? 'active' : ''} key={item.id}>{i + 1}</li>
+                            ))}
+                        </ul>
 
-                    <p className="message">
-                        Passo: {step}: {steps[step - 1].description}
-                    </p>
+                        <p className="message">
+                            Passo: {step}: {steps[step - 1].description}
+                        </p>
 
-                    <div className="buttons">
-                        <button onClick={handleClickBackButton}>Anterior</button>
-                        <button onClick={handleClickNextButton}>Próximo</button>
+                        <div className="buttons">
+                            <button onClick={handleClickBackButton}>Anterior</button>
+                            <button onClick={handleClickNextButton}>Próximo</button>
+                        </div>
+
                     </div>
-
-                </div>)}
+                )}
         </>
     )
 }
