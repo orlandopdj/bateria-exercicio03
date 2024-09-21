@@ -15,9 +15,9 @@ const steps = [
     },
 ]
 
-const Toggle = ({ handleClickCloseButton, sholdBeOpen }) => (
+const Toggle = ({ onClickToggle, sholdBeOpen }) => (
     <div className="container-toggle">
-        <button onClick={handleClickCloseButton} className="toggle">{sholdBeOpen ? 'Fechar' : 'Abrir'}</button>
+        <button onClick={onClickToggle} className="toggle">{sholdBeOpen ? 'Fechar' : 'Abrir'}</button>
     </div>
 )
 
@@ -55,7 +55,7 @@ const App = () => {
     return (
         <>
             <Toggle
-                handleClickCloseButton={handleClickCloseButton}
+                onClickToggle={handleClickCloseButton}
                 sholdBeOpen={sholdBeOpen}
             />
 
